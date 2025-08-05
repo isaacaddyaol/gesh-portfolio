@@ -1,0 +1,199 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #64748b;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* 3D Effects */
+.shadow-3d {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1), 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.hover-3d:hover {
+  transform: translateY(-5px) rotateX(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Smooth 3D Floating animations */
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+  }
+  50% { 
+    transform: translateY(-15px) rotateX(5deg) rotateY(3deg); 
+  }
+}
+
+@keyframes float-delayed {
+  0%, 100% { 
+    transform: translateY(0px) rotateZ(0deg); 
+  }
+  50% { 
+    transform: translateY(-12px) rotateZ(90deg); 
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translateY(0px) rotateX(0deg) scale(1); 
+  }
+  50% { 
+    transform: translateY(-8px) rotateX(8deg) scale(1.05); 
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% { 
+    transform: translateY(-5px) rotateY(0deg); 
+  }
+  50% { 
+    transform: translateY(5px) rotateY(90deg); 
+  }
+}
+
+@keyframes float-fast {
+  0%, 100% { 
+    transform: translateY(0px) scale(1); 
+  }
+  50% { 
+    transform: translateY(-18px) scale(1.1); 
+  }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.animate-float {
+  animation: float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: float-delayed 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+.animate-float-slow {
+  animation: float-slow 12s ease-in-out infinite;
+  animation-delay: 4s;
+}
+
+.animate-float-reverse {
+  animation: float-reverse 9s ease-in-out infinite;
+  animation-delay: 1s;
+}
+
+.animate-float-fast {
+  animation: float-fast 6s ease-in-out infinite;
+  animation-delay: 3s;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* 3D Perspective effects */
+.perspective {
+  perspective: 1000px;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.rotate-3d {
+  transform-style: preserve-3d;
+}
+
+/* Card stack effect */
+.card-stack {
+  transform-style: preserve-3d;
+}
+
+/* Smooth card animations */
+@keyframes cardSwipeLeft {
+  0% { transform: translateX(0) rotateZ(0deg) scale(1); opacity: 1; }
+  100% { transform: translateX(-100%) rotateZ(-8deg) scale(0.9); opacity: 0; }
+}
+
+@keyframes cardSwipeRight {
+  0% { transform: translateX(0) rotateZ(0deg) scale(1); opacity: 1; }
+  100% { transform: translateX(100%) rotateZ(8deg) scale(0.9); opacity: 0; }
+}
+
+@keyframes cardSlideIn {
+  0% { transform: translateX(100%) rotateZ(8deg) scale(0.9); opacity: 0; }
+  100% { transform: translateX(0) rotateZ(0deg) scale(1); opacity: 1; }
+}
+
+@keyframes cardFadeIn {
+  0% { opacity: 0; transform: scale(0.95); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.card-swipe-left {
+  animation: cardSwipeLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.card-swipe-right {
+  animation: cardSwipeRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.card-slide-in {
+  animation: cardSlideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.card-fade-in {
+  animation: cardFadeIn 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Card hover effects */
+.card-hover:hover {
+  transform: translateY(-10px) rotateX(5deg);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+}
