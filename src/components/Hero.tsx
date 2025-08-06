@@ -221,43 +221,96 @@ export default function Hero() {
                   return (
                     <div
                       key={index}
-                      className="absolute inset-0 bg-white rounded-2xl shadow-2xl overflow-hidden"
+                      className="absolute inset-0 bg-white rounded-3xl shadow-2xl overflow-hidden border border-gray-100"
                       style={{
                         ...cardStyle,
                         zIndex,
                         opacity,
-                        pointerEvents: isActive ? 'auto' : 'none'
+                        pointerEvents: isActive ? 'auto' : 'none',
+                        boxShadow: isActive 
+                          ? '0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.05)' 
+                          : '0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)'
                       }}
                     >
-                      <div className="relative w-full h-full">
-                        <div className="w-full h-3/4 bg-gray-100 flex items-center justify-center overflow-hidden relative">
+                      <div className="relative w-full h-full group">
+                        {/* Image Container with Gradient Overlay */}
+                        <div className="relative w-full h-3/4 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden">
                           <Image
                             src={image.url}
                             alt={image.title}
                             width={400}
                             height={300}
-                            className="w-full h-full object-cover"
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                             onError={(e) => {
                               e.currentTarget.style.display = 'none'
                               e.currentTarget.nextElementSibling?.classList.remove('hidden')
                             }}
                           />
-                          <div className="hidden absolute inset-0 bg-gradient-to-br from-slate-600 to-gray-700 flex items-center justify-center">
-                            <div className="text-white text-lg font-medium">
+                          
+                          {/* Gradient Overlay */}
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                          
+                          {/* Category Badge */}
+                          <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-xs font-medium text-gray-700 shadow-lg">
+                            {image.category}
+                          </div>
+                          
+                          {/* Hover Title Overlay */}
+                          <div className="absolute bottom-4 left-4 right-4 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                            <h3 className="text-white font-bold text-lg mb-1 drop-shadow-lg">
                               {image.title}
+                            </h3>
+                            <p className="text-white/90 text-sm drop-shadow">
+                              View Project Details
+                            </p>
+                          </div>
+
+                          {/* Fallback for failed image loads */}
+                          <div className="hidden absolute inset-0 bg-gradient-to-br from-slate-600 to-gray-700 flex items-center justify-center">
+                            <div className="text-center text-white">
+                              <div className="w-16 h-16 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                                <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
+                              </div>
+                              <div className="text-lg font-medium">{image.title}</div>
                             </div>
                           </div>
                         </div>
 
-                        {/* Card Info */}
-                        <div className="p-4 h-1/4 flex flex-col justify-center">
-                          <h3 className="font-semibold text-gray-900 text-sm mb-1">
-                            {image.title}
-                          </h3>
-                          <p className="text-gray-600 text-xs">
-                            {image.category}
-                          </p>
+                        {/* Card Info Section */}
+                        <div className="relative h-1/4 p-6 bg-gradient-to-r from-white to-gray-50">
+                          <div className="flex items-center justify-between h-full">
+                            <div className="flex-1">
+                              <h3 className="font-bold text-gray-900 text-base mb-1 line-clamp-1">
+                                {image.title}
+                              </h3>
+                              <p className="text-gray-600 text-sm font-medium">
+                                {image.category}
+                              </p>
+                            </div>
+                            
+                            {/* Action Button */}
+                            <div className="ml-4">
+                              <div className="w-10 h-10 bg-slate-100 hover:bg-slate-200 rounded-full flex items-center justify-center transition-colors duration-200 cursor-pointer group-hover:bg-slate-700 group-hover:text-white">
+                                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          {/* Decorative Elements */}
+                          <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-slate-600 via-gray-500 to-slate-600 opacity-20"></div>
                         </div>
+
+                        {/* Floating Elements for Active Card */}
+                        {isActive && (
+                          <>
+                            <div className="absolute -top-2 -right-2 w-4 h-4 bg-slate-600 rounded-full animate-pulse"></div>
+                            <div className="absolute -bottom-2 -left-2 w-3 h-3 bg-gray-500 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                          </>
+                        )}
                       </div>
                     </div>
                   )
@@ -266,38 +319,54 @@ export default function Hero() {
                 {/* Navigation Arrows */}
                 <button
                   onClick={prevImage}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow-lg flex items-center justify-center hover:bg-white hover:scale-105 transition-all duration-300 ease-out z-40"
+                  className="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-xl flex items-center justify-center hover:bg-slate-700 hover:text-white hover:scale-110 transition-all duration-300 ease-out z-40 border border-gray-200"
                   disabled={isAnimating}
                 >
-                  <span className="text-slate-700 text-lg">‹</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
                 </button>
 
                 <button
                   onClick={nextImage}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/90 rounded-full shadow-lg flex items-center justify-center hover:bg-white hover:scale-105 transition-all duration-300 ease-out z-40"
+                  className="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 bg-white/95 backdrop-blur-sm rounded-full shadow-xl flex items-center justify-center hover:bg-slate-700 hover:text-white hover:scale-110 transition-all duration-300 ease-out z-40 border border-gray-200"
                   disabled={isAnimating}
                 >
-                  <span className="text-slate-700 text-lg">›</span>
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
                 </button>
 
                 {/* Dots Indicator */}
-                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 z-40">
+                <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-40">
                   {portfolioImages.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => goToImage(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-500 ease-out hover:scale-110 ${index === currentImageIndex
-                        ? 'bg-slate-700 scale-105'
-                        : 'bg-slate-400 hover:bg-slate-600'
+                      className={`relative transition-all duration-500 ease-out hover:scale-125 ${index === currentImageIndex
+                        ? 'w-8 h-3 bg-slate-700 rounded-full'
+                        : 'w-3 h-3 bg-slate-400 hover:bg-slate-600 rounded-full'
                         }`}
                       disabled={isAnimating}
-                    />
+                    >
+                      {index === currentImageIndex && (
+                        <div className="absolute inset-0 bg-slate-700 rounded-full animate-pulse"></div>
+                      )}
+                    </button>
                   ))}
                 </div>
 
                 {/* Swipe Hint */}
-                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-xs text-gray-500 text-center">
-                  Swipe or drag to navigate
+                <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 text-center">
+                  <div className="flex items-center gap-2 text-xs text-gray-500 bg-white/80 backdrop-blur-sm px-3 py-1 rounded-full border border-gray-200">
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
+                    </svg>
+                    <span>Swipe or drag to navigate</span>
+                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
                 </div>
               </div>
             </div>

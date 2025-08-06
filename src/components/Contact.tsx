@@ -36,7 +36,7 @@ export default function Contact() {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_email: 'isaacaddyasare@gmail.com',
+          to_email: 'agbashiegershon2@gmail.com',
           reply_to: formData.email
         }
 
@@ -58,7 +58,7 @@ export default function Contact() {
       const body = encodeURIComponent(
         `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
       )
-      const mailtoLink = `mailto:isaacaddyasare@gmail.com?subject=${subject}&body=${body}`
+      const mailtoLink = `mailto:agbashiegershon2@gmail.com?subject=${subject}&body=${body}`
 
       // Open email client
       window.location.href = mailtoLink
@@ -79,7 +79,7 @@ export default function Contact() {
         const body = encodeURIComponent(
           `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
         )
-        const mailtoLink = `mailto:isaacaddyasare@gmail.com?subject=${subject}&body=${body}`
+        const mailtoLink = `mailto:agbashiegershon2@gmail.com?subject=${subject}&body=${body}`
         window.location.href = mailtoLink
         setSubmitStatus('success')
       } catch {
@@ -116,7 +116,7 @@ export default function Contact() {
           {/* Quick Contact Actions */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
             <a
-              href="https://instagram.com/your_instagram_handle"
+              href="https://www.instagram.com/kojo.gersh?igsh=MXd2aGtha2NjaWgyMA=="
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-6 py-3 rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all duration-200 font-medium flex items-center gap-2 group"
@@ -128,7 +128,7 @@ export default function Contact() {
             </a>
 
             <a
-              href="https://wa.me/0543860264?text=Hi%20isaac,%20I%27m%20interested%20in%20your%20design%20services"
+              href="https://wa.me/+233248019359"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium flex items-center gap-2 group"
@@ -152,7 +152,7 @@ export default function Contact() {
 
               <div className="space-y-4">
                 <a
-                  href="mailto:gesh.gbesh@gmail.com"
+                  href="mailto:agbashiegershon2@gmail.com"
                   className="flex items-center hover:transform hover:scale-105 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 bg-slate-100 rounded-lg flex items-center justify-center mr-4 shadow-lg hover:shadow-xl transition-shadow duration-300 group-hover:bg-slate-200">
@@ -162,12 +162,12 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-medium text-gray-900 group-hover:text-slate-700">Email</div>
-                    <div className="text-gray-600 group-hover:text-slate-600">gesh.gbesh@gmail.com</div>
+                    <div className="text-gray-600 group-hover:text-slate-600">agbashiegershon2@gmail.com</div>
                   </div>
                 </a>
 
                 <a
-                  href="https://wa.me/0543860264"
+                  href="https://wa.me/+233248019359"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center hover:transform hover:scale-105 transition-all duration-300 group"
@@ -179,7 +179,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-medium text-gray-900 group-hover:text-green-700">WhatsApp</div>
-                    <div className="text-gray-600 group-hover:text-green-600">+223 543860264</div>
+                    <div className="text-gray-600 group-hover:text-green-600">+223 248019359</div>
                   </div>
                 </a>
 
@@ -192,7 +192,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <div className="font-medium text-gray-900">Location</div>
-                    <div className="text-gray-600">San Francisco, CA</div>
+                    <div className="text-gray-600">Accra, Ghana</div>
                   </div>
                 </div>
 
